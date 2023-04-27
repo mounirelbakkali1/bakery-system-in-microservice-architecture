@@ -15,6 +15,9 @@ import java.util.List;
 @SpringBootApplication
 public class BakeryServiceApplication {
 
+    @Autowired
+    BakeryService service ;
+
     public static void main(String[] args) {
         SpringApplication.run(BakeryServiceApplication.class, args);
         for (String arg : args){
@@ -26,7 +29,9 @@ public class BakeryServiceApplication {
     @Bean
     CommandLineRunner runner(){
         return args -> {
-
+            Bakery b = service.saveBakery();
+            b.getOpeningHours()
+                    .forEach(System.out::println);
         };
     }
 

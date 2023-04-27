@@ -12,6 +12,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Table(name = "opening_hours")
 @Builder
+@ToString
 public class OpeningHours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

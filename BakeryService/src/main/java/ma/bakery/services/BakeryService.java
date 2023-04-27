@@ -44,7 +44,6 @@ public class BakeryService {
                                 .build()
                 ))
                 .build();
-
         var b = bakeryRepository.save(bakery);
         return b ;
     }
