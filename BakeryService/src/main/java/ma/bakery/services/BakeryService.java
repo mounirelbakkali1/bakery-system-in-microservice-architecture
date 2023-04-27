@@ -47,4 +47,9 @@ public class BakeryService {
         var b = bakeryRepository.save(bakery);
         return b ;
     }
+
+    @Transactional
+    public Bakery createBakery(Bakery bakery){
+        return this.bakeryRepository.save(bakery);
+    }
 }
