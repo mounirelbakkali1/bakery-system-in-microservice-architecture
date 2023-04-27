@@ -21,8 +21,17 @@ class BakeryServiceTwoTest {
 
     @Test
     @Transactional
-    void souldSaveABakery() {
+    void shouldSaveABakery() {
         Bakery b = service.saveBakery();
         assertEquals(b.getName(),"bakery kesh");
+    }
+
+
+
+    @Test
+    @Transactional
+    void shouldGetSavedBakeryAddress(){
+        Bakery b = service.saveBakery();
+        assertEquals(b.getAddress().getCity(),"Marrakesh");
     }
 }

@@ -1,13 +1,18 @@
 package ma.bakery.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.Table;
 
 @Entity
+@ToString(callSuper = true)
+@SuperBuilder
 public class Founder extends User {
     private String business_phone ;
 
