@@ -1,16 +1,12 @@
 package ma.bakery.entities;
 
 
-import io.vavr.match.annotation.Patterns;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.TemporalType.DATE;
@@ -20,6 +16,8 @@ import static javax.persistence.TemporalType.DATE;
 @Getter
 @NoArgsConstructor
 @ToString
+@Builder
+@AllArgsConstructor
 public class Bakery {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -27,7 +25,7 @@ public class Bakery {
     private Long id ;
     private String name ;
     @OneToOne
-    @JoinColumn(name = "address_id",nullable = false)
+    @JoinColumn(name = "address_id",nullable = true)
     private Address address ;
     @ManyToOne
     @JoinColumn(name = "founder_id")
@@ -38,6 +36,6 @@ public class Bakery {
     private byte[] primary_image ;
     @ElementCollection
     private List<byte[]> images  = new ArrayList<>();
-    @OneToMany(targetEntity = OpeningHours.class)
+   @OneToMany(fetch = FetchType.EAGER)
     List<OpeningHours> openingHours = new ArrayList<>();
 }
