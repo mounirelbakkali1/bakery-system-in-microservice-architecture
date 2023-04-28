@@ -16,8 +16,8 @@ import javax.validation.constraints.NotBlank;
 @ToString(callSuper = true)
 @SuperBuilder
 public class Founder extends User {
-    @NotBlank
-    @Digits(message = "besiness phone of the founder should be provided",integer = 0 , fraction = 0)
+
+    @Digits(message = "besiness phone of the founder should be provided",integer = 10 , fraction = 0)
     private String business_phone ;
 
     public Founder() {

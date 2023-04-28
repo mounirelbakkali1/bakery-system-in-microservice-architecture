@@ -41,7 +41,7 @@ public class Bakery {
     @Temporal(value = DATE)
     private Date created_at;
     @NotBlank(message = "business phone should be provided")
-    @Digits(message = "phone number is invalid (should contain 10 digits)", integer = 0, fraction = 0)
+    @Digits(message = "phone number is invalid (should contain 10 digits)", integer = 10, fraction = 0)
     private String business_phone ;
     private byte[] primary_image ;
     @ElementCollection
