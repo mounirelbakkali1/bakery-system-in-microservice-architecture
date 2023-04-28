@@ -28,6 +28,11 @@ public class BakeryResource {
         return new ResponseEntity<>(service.createBakery(bakery),HttpStatus.CREATED);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getBakery(@PathVariable Long id){
+        return new ResponseEntity<>(service.findBakery(id).orElse(null),HttpStatus.ACCEPTED);
+    }
+
    @ExceptionHandler(RuntimeException.class)
    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
        return ResponseEntity

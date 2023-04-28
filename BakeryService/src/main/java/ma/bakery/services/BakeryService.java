@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BakeryService {
@@ -51,5 +52,9 @@ public class BakeryService {
     @Transactional
     public Bakery createBakery(Bakery bakery){
         return this.bakeryRepository.save(bakery);
+    }
+
+    public Optional<Bakery> findBakery(Long id) {
+        return bakeryRepository.findById(id);
     }
 }
