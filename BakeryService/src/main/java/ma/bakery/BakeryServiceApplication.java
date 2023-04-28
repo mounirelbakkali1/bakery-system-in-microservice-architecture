@@ -29,9 +29,9 @@ public class BakeryServiceApplication {
     @Bean
     CommandLineRunner runner(){
         return args -> {
-            Bakery b = service.saveBakery();
+           /* Bakery b = service.saveBakery();
             b.getOpeningHours()
-                    .forEach(System.out::println);
+                    .forEach(System.out::println);*/
         };
     }
 
