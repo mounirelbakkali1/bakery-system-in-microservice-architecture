@@ -1,6 +1,7 @@
 package ma.bakery.entities;
 
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import ma.bakery.utilities.annotations.ValueOfEnum;
 
@@ -30,19 +31,24 @@ public class Bakery {
     @Column(name = "id",nullable = false)
     private Long id ;
     @NotBlank(message = "name of bakery is required")
+    // required to be shown in the docs
+    @ApiModelProperty(required = true)
     @Pattern(regexp = "^[a-zA-Z0-9 ]*$",message = "bakery name should be composed only by letters and numbers")
     private String name ;
     @OneToOne(cascade = ALL)
     @JoinColumn(name = "address_id")
+    @ApiModelProperty(required = true)
     @NotNull(message = "Address of bakery (lo,la , city , street , zipcode ) is required")
     private Address address ;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "founder_id")
     @NotNull(message = "Founder is required")
+    @ApiModelProperty(required = true)
     private Founder founder ;
     @Temporal(value = DATE)
     private Date created_at;
     @NotBlank(message = "business phone should be provided")
+    @ApiModelProperty(required = true)
     @Digits(message = "phone number is invalid (should contain 10 digits)", integer = 10, fraction = 0)
     private String business_phone ;
     private byte[] primary_image ;

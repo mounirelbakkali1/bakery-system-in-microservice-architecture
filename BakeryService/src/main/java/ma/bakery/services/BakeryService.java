@@ -57,4 +57,17 @@ public class BakeryService {
     public Optional<Bakery> findBakery(Long id) {
         return bakeryRepository.findById(id);
     }
+
+
+    @Transactional
+    public void deleteBakery(Long id) {
+         bakeryRepository.deleteById(id);
+    }
+
+    public void updateBakery(Long id) {
+        // TODO :: provide code for update
+        //  Load and Save Approach
+        //  Mapping Strategy
+        //  Custom Query
+    }
 }

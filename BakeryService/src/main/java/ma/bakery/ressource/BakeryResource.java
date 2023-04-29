@@ -1,6 +1,7 @@
 package ma.bakery.ressource;
 
 
+import io.swagger.annotations.ApiParam;
 import ma.bakery.entities.Bakery;
 import ma.bakery.services.BakeryService;
 import org.hibernate.PropertyValueException;
@@ -31,6 +32,26 @@ public class BakeryResource {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getBakery(@PathVariable Long id){
         return new ResponseEntity<>(service.findBakery(id).orElse(null),HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteBakery(
+            @ApiParam(
+            name = "id of bakery to delete",
+            required = true)
+            @PathVariable Long id){
+        if(this.service.findBakery(id).isEmpty()) return ResponseEntity.badRequest().body("bakery not found");
+        service.deleteBakery(id);
+        return ResponseEntity.accepted().body(
+                "deleted successfully"
+        );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateBakery(@PathVariable Long id){
+        if (this.service.findBakery(id).isEmpty())return ResponseEntity.badRequest().body("bakery not found");
+        service.updateBakery(id);
+        return ResponseEntity.accepted().body("updated successfuly");
     }
 
    @ExceptionHandler(RuntimeException.class)

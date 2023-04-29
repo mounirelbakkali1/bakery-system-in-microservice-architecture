@@ -3,6 +3,8 @@ package ma.bakery.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,6 +16,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @EnableOpenApi
+// to transalate validation annotation (@NotNull,@Size ...) in the documentation of the API
+@Import(BeanValidatorPluginsConfiguration.class)
 public class SwaggerConfig {
 
 
@@ -34,7 +38,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("Bakery API")
                 .version("1.0")
-                .description("API for exposing Bakery Microservice")
+                .description("API docs for exposing Bakery Microservice")
                 .contact(new Contact("Mounir El Bakkali","https://mounirelbakkali.ma",
                         "M.ELBAKKALI@STUDENT.YOUCODE.MA"))
                 .license("No License")
