@@ -21,9 +21,6 @@ public class BakeryServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BakeryServiceApplication.class, args);
-        for (String arg : args){
-            System.out.println(arg);
-        }
     }
 
 

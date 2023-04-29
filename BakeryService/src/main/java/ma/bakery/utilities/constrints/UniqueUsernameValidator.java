@@ -3,14 +3,19 @@ package ma.bakery.utilities.constrints;
 import ma.bakery.repositories.UserRepository;
 import ma.bakery.utilities.annotations.UniqueUsername;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniqueUsernameVlidator implements ConstraintValidator<UniqueUsername,String> {
+@Component
+public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername,String> {
 
     @Autowired
     UserRepository userRepository;
+
+
 
     @Override
     public void initialize(UniqueUsername constraintAnnotation) {

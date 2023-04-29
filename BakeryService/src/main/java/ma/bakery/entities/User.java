@@ -2,8 +2,11 @@ package ma.bakery.entities;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import ma.bakery.utilities.annotations.UniqueUsername;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +23,12 @@ public class User {
     @Column(nullable = false)
     private String  name ;
     @Column(nullable = false)
+    @Size(min = 3,message = "username should contain at least 3 characters ")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$",message = "username should be composed only by letters and numbers")
+   // @UniqueUsername
     private String username ;
+    @Column(nullable = false)
+    @Size(min = 8,message = "password should be at least 8 length")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",message = "password should obligatory contain at least one uppercase one lowercase and one number ")
     private String password ;
 }

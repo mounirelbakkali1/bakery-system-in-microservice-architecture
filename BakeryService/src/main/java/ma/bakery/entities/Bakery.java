@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Bakery {
     @Column(name = "id",nullable = false)
     private Long id ;
     @NotBlank(message = "name of bakery is required")
+    @Pattern(regexp = "^[a-zA-Z0-9 ]*$",message = "bakery name should be composed only by letters and numbers")
     private String name ;
     @OneToOne(cascade = ALL)
     @JoinColumn(name = "address_id")
@@ -59,6 +61,6 @@ public class Bakery {
    @PrePersist
     private void setDefaultValues(){
        this.created_at = new Date();
-       this.bakeryStatus = BakeryStatus.OPENED;
+       if(null != this.bakeryStatus) this.bakeryStatus = BakeryStatus.OPENED;
    }
 }

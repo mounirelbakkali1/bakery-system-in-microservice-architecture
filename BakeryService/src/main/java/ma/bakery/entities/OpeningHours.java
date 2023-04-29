@@ -20,14 +20,13 @@ public class OpeningHours {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",nullable = true)
     private Long id;
-    @NotBlank
-    @ValueOfEnum(enumClass = Day.class)
+    //@ValueOfEnum(enumClass = Day.class)
     @Enumerated(EnumType.STRING)
     private Day day  ;
-    @ValueOfEnum(enumClass = Time.class)
+   // @ValueOfEnum(enumClass = Time.class)
     @Enumerated(EnumType.STRING)
     private Time from ;
-    @ValueOfEnum(enumClass = Time.class)
+    //@ValueOfEnum(enumClass = Time.class)
     @Enumerated(EnumType.STRING)
     private Time to ;
 }
