@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/bakery")
+@RequestMapping("/api")
 public class BakeryResource {
 
 
@@ -29,14 +29,19 @@ public class BakeryResource {
         return new ResponseEntity<>(service.createBakery(bakery),HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/v1/bakery/{id}")
     public ResponseEntity<Object> getBakery(@PathVariable Long id){
         var bakery = service.findBakery(id);
         if (bakery.isEmpty()) return ResponseEntity.notFound().build();
         return new ResponseEntity<>(bakery.get(),HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/v2/bakery/{id}")
+    public ResponseEntity<Object> getBakeryV2(@PathVariable Long id){
+        return ResponseEntity.accepted().body("V2 :)");
+    }
+
+    @DeleteMapping("/v1/bakery/{id}")
     public ResponseEntity<Object> deleteBakery(
             @ApiParam(
             name = "id of bakery to delete",
@@ -49,7 +54,7 @@ public class BakeryResource {
         );
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/v1/bakery/{id}")
     public ResponseEntity<Object> updateBakery(@PathVariable Long id){
         if (this.service.findBakery(id).isEmpty())return ResponseEntity.badRequest().body("bakery not found");
         service.updateBakery(id);

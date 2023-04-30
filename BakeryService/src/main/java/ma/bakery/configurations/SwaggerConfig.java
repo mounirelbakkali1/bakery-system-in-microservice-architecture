@@ -26,18 +26,31 @@ public class SwaggerConfig {
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.OAS_30)
+                .groupName("bakery-api-v1")
                 .select()
-                .apis(RequestHandlerSelectors.any(  ))
-                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/api/v1/**"))
                 .build()
-                .apiInfo(getApiInfo());
+                .apiInfo(getApiInfo("1.0"));
     }
 
+    @Bean
+    public Docket apiV2(){
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("bakery-api-v2")
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/api/v2/**"))
+                .build()
+                .apiInfo(getApiInfo("2.0"));
+    }
+
+
     // customize API LEVEL using APIInfo object
-    private ApiInfo getApiInfo() {
+    private ApiInfo getApiInfo(String version) {
         return new ApiInfoBuilder()
                 .title("Bakery API")
-                .version("1.0")
+                .version(version)
                 .description("API docs for exposing Bakery Microservice")
                 .contact(new Contact("Mounir El Bakkali","https://mounirelbakkali.ma",
                         "M.ELBAKKALI@STUDENT.YOUCODE.MA"))

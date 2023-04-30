@@ -61,4 +61,17 @@ class BakeryResourceTest {
     void updateBakery() {
     }
 
+
+    @Test
+    void shouldExposeSecondVersionOfTheResource() throws Exception {
+        // create a bakery :
+        bakeryService.saveBakery();
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/v2/bakery/1") ;
+        MvcResult result = mockMvc
+                .perform(requestBuilder)
+                .andExpect(status().isAccepted())
+                .andReturn();
+        assertEquals(result,"V2 :)");
+
+    }
 }
