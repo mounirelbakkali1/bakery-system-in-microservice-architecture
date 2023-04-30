@@ -1,7 +1,7 @@
 package ma.bakery.utilities.annotations;
 
 
-import ma.bakery.utilities.constrints.UniqueUsernameValidator;
+import ma.bakery.utilities.constraints.UniqueUsernameValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

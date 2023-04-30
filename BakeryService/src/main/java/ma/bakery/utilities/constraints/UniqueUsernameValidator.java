@@ -1,11 +1,10 @@
-package ma.bakery.utilities.constrints;
+package ma.bakery.utilities.constraints;
 
 import ma.bakery.repositories.UserRepository;
 import ma.bakery.utilities.annotations.UniqueUsername;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

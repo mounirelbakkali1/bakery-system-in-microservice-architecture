@@ -1,7 +1,7 @@
 package ma.bakery.utilities.annotations;
 
 
-import ma.bakery.utilities.constrints.ValueOfEnumValidator;
+import ma.bakery.utilities.constraints.ValueOfEnumValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

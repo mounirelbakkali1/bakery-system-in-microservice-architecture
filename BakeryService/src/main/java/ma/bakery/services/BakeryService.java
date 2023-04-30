@@ -71,10 +71,11 @@ public class BakeryService {
          bakeryRepository.deleteById(id);
     }
 
-    public void updateBakery(Long id) {
+    public Bakery updateBakery(Bakery bakery) {
         // TODO :: provide code for update
         //  Load and Save Approach
         //  Mapping Strategy
         //  Custom Query
+        return bakeryRepository.updateBakery(bakery);
     }
 }

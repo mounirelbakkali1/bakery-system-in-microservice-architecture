@@ -1,4 +1,4 @@
-package ma.bakery.utilities.constrints;
+package ma.bakery.utilities.constraints;
 
 import ma.bakery.utilities.annotations.ValueOfEnum;
 import org.springframework.stereotype.Component;

@@ -2,6 +2,7 @@
 package ma.bakery.ressource.handlers;
 
 
+import ma.bakery.utilities.CustomResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         List<FieldError> errors = ex.getBindingResult().getFieldErrors();
         List<Map<String, String>> errorsObj = errors.stream()
                 .map(error -> {
@@ -27,15 +28,15 @@ public class GlobalExceptionHandler {
                     return errorsMap;
                 })
                 .collect(Collectors.toList());
-        return ResponseEntity.badRequest().body(errorsObj);
+        return ResponseEntity.badRequest().body(new CustomResponse<>("Error Accurate :(",errorsObj));
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+    public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
         System.err.println(ex.getMessage());
         ex.printStackTrace();
         return ResponseEntity
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body("An error occurred: " + ex.getMessage());
+            .body(new CustomResponse<String>("Error Accurate :(",ex.getMessage()));
     }
 }
