@@ -31,7 +31,9 @@ public class BakeryResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getBakery(@PathVariable Long id){
-        return new ResponseEntity<>(service.findBakery(id).orElse(null),HttpStatus.ACCEPTED);
+        var bakery = service.findBakery(id);
+        if (bakery.isEmpty()) return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(bakery.get(),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")

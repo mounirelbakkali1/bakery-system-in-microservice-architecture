@@ -16,6 +16,11 @@ public class BakeryService {
     BakeryRepository bakeryRepository ;
 
 
+    public List<Bakery> findAllBakeries(){
+        return bakeryRepository.findAll();
+    }
+
+
     @Transactional
     public Bakery saveBakery(){
         Bakery bakery = Bakery.builder()
@@ -23,6 +28,7 @@ public class BakeryService {
                 .business_phone("06666666666")
                 .address(Address.builder()
                         .city("Marrakesh")
+                        .street("street")
                         .latitude("32")
                         .longitude("12")
                         .zip_code("17000")
@@ -30,7 +36,7 @@ public class BakeryService {
                 .founder(Founder.builder()
                         .name("mounir")
                         .username("mounir1")
-                        .password("12345")
+                        .password("Mpq12345")
                         .build())
                 .openingHours(List.of(
                         OpeningHours.builder()
@@ -44,6 +50,7 @@ public class BakeryService {
                                 .to(Time._18)
                                 .build()
                 ))
+                .bakeryStatus(BakeryStatus.OPENED)
                 .build();
         var b = bakeryRepository.save(bakery);
         return b ;
