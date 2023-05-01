@@ -22,5 +22,4 @@ public @interface ValueOfEnum {
     Class<? extends Payload>[] payload() default {};
     // required
     Class<?>[] groups() default {};
-
 }
